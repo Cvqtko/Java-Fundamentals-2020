@@ -1,0 +1,29 @@
+div {
+	display: inline-block;
+	width: 10%;
+	margin-left: 2%;
+	vertical-align: top;
+	text-align: center;
+	padding: 20px;
+	border: 5px solid yellow;
+}
+
+#red {
+	background-color: red;
+}
+
+#blue {
+	background-color: blue;
+}
+
+#green {
+	background-color: green;
+}
+
+#orange {
+	background-color: orange;
+}
+
+#purple {
+	background-color: purple;
+}

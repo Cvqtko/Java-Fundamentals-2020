@@ -1,0 +1,35 @@
+div {
+	display: inline-block;
+	width: 30%;
+	margin-left: 2%;
+	vertical-align: top;
+}
+
+span {
+	margin-top: 5em;
+}
+
+h1 {
+	text-align: center;
+	display: inline-block;
+	color: blue;
+}
+
+input[type="radio"] {
+	display: inline-block;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+	display: block; /* remove extra space below image */
+}
+
+p {
+	color: darkviolet;
+}
+
+li {
+	list-style-position: inside;
+	border: 1px solid yellow;
+}
