@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exercise_04 {
@@ -5,8 +6,12 @@ public class Exercise_04 {
 		Scanner scanner = new Scanner(System.in);
 		String[] arr = scanner.nextLine().split(" ");
 
-		for (int i = arr.length - 1; i >= 0; i--) {
-			System.out.print(arr[i] + " ");
+		for (int i = 0; i < arr.length / 2; i++) {
+			String temp = arr[i];
+			arr[i] = arr[arr.length - 1 - i];
+			arr[arr.length - 1 - i] = temp;
 		}
+
+		Arrays.asList(arr).stream().forEach(e -> System.out.print(e + " "));
 	}
 }
