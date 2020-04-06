@@ -6,7 +6,7 @@ public class Exercise_03 {
 		char first = scanner.nextLine().charAt(0);
 		char last = scanner.nextLine().charAt(0);
 
-		if (first > last) {
+		if (first < last) {
 			printSymbols(first, last);
 		}else {
 			printSymbols(last, first);
