@@ -8,6 +8,23 @@ public class Exercise_05 {
 		Scanner scanner = new Scanner(System.in);
 		List<Integer> numbers = Arrays.stream(scanner.nextLine().split(" ")).map(Integer::parseInt)
 				.collect(Collectors.toList());
+		String[] tokens = scanner.nextLine().split("\\s+");
+		int number = Integer.parseInt(tokens[0]);
+		int power = Integer.parseInt(tokens[1]);
 
+		while (numbers.contains(number)) {
+			int bombIndex = numbers.indexOf(number);
+			int leftBound = Math.max(bombIndex-power, 0);
+			int rightBound = Math.min(bombIndex+power, numbers.size()-1);
+			
+			for (int i = rightBound; i >=leftBound; i--) {
+				numbers.remove(i);
+			}
+		}
+		int sum = 0;
+		for (Integer integer : numbers) {
+			sum+=integer;
+		}
+		System.out.println(sum);
 	}
 }

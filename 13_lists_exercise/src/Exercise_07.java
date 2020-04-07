@@ -1,13 +1,17 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Exercise_07 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		List<Integer> numbers = Arrays.stream(scanner.nextLine().split(" ")).map(Integer::parseInt)
-				.collect(Collectors.toList());
-
+		String[] input = scanner.nextLine().split("\\|");
+		ArrayList<String> result = new ArrayList<String>();
+		for (int i = input.length - 1; i >= 0; i--) {
+			String[] arr = input[i].trim().split("\\s+");
+			result.addAll(Arrays.asList(arr));
+		}
+		result.remove("");
+		System.out.println(String.join(" ", result));
 	}
 }
