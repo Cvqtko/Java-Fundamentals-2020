@@ -23,9 +23,21 @@ public class Article {
 		this.title = title;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("%s - %s:%s", this.title, this.content, this.author);
+		return String.format("%s - %s: %s", this.title, this.content, this.author);
 	}
 
 }
