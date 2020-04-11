@@ -1,41 +1,72 @@
 package exercise_more_02;
 
+import java.util.List;
+
 public class Car {
-	{
-	private string model;
-	private Engine engine;
-	private Cargo cargo;
+
+	private String model;
+	private int engineSpeed;
+	private int enginePower;
+	private int cargoWeight;
+	private String cargoType;
 	private List<Tire> tires;
 
-	public Car(string model, Engine engine, Cargo cargo, List<Tire> tires) {
-		this.Model = model;
-		this.Engine = engine;
-		this.Cargo = cargo;
-		this.Tires = tires;
+	public Car(String model, int engineSpeed, int enginePower, int cargoWeight, String cargoType,
+			List<Tire> tires) {
+		this.model = model;
+		this.engineSpeed = engineSpeed;
+		this.enginePower = enginePower;
+		this.cargoWeight = cargoWeight;
+		this.cargoType = cargoType;
+		this.tires = tires;
 	}
 
-	public List<Tire> Tires
-	{
-	        get { return tires; }
-	        private set { tires = value; }
-	    }
+	public String getModel() {
+		return model;
+	}
 
-	public Cargo Cargo
-	{
-	        get { return cargo; }
-	        private set { cargo = value; }
-	    }
+	public void setModel(String model) {
+		this.model = model;
+	}
 
-	public Engine Engine
-	{
-	        get { return engine; }
-	        private set { engine = value; }
-	    }
+	public int getEngineSpeed() {
+		return engineSpeed;
+	}
 
-	public String Model
-	{
-	        get { return model; }
-	        private set { model = value; }
-	    }
+	public void setEngineSpeed(int engineSpeed) {
+		this.engineSpeed = engineSpeed;
+	}
+
+	public int getEnginePower() {
+		return enginePower;
+	}
+
+	public void setEnginePower(int enginePower) {
+		this.enginePower = enginePower;
+	}
+
+	public int getCargoWeight() {
+		return cargoWeight;
+	}
+
+	public void setCargoWeight(int cargoWeight) {
+		this.cargoWeight = cargoWeight;
+	}
+
+	public String getCargoType() {
+		return cargoType;
+	}
+
+	public void setCargoType(String cargoType) {
+		this.cargoType = cargoType;
+	}
+
+	public List<Tire> getTires() {
+		return tires;
+	}
+
+	public void setTires(List<Tire> tires) {
+		this.tires = tires;
+	}
 
 }
