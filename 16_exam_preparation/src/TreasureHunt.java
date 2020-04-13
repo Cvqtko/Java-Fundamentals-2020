@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class Exercise_02 {
+public class TreasureHunt {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		String[] split = scanner.nextLine().split("\\|");
@@ -33,7 +33,7 @@ public class Exercise_02 {
 				break;
 			case "Steal":
 				int count = Integer.parseInt(tokens[1]);
-				count = count > chest.size() ? chest.size() : count;
+				count = Math.min(count, chest.size());
 				List<String> stolen = new ArrayList<String>();
 				for (int i = 0; i < count; i++) {
 					int lastIndex = chest.size() - 1;
