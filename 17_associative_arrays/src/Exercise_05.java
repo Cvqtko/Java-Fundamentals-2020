@@ -8,8 +8,7 @@ public class Exercise_05 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 
-		Arrays.stream(scanner.nextLine().split("\\s+")).filter(w -> w.length() % 2 == 0)
-				.forEach(w -> System.out.println(w));
-
+		Arrays.stream(scanner.nextLine().trim().split("\\s+")).map(Integer::parseInt).sorted((n1, n2) -> n2.compareTo(n1))
+				.limit(3).forEach(n -> System.out.print(n + " "));
 	}
 }
