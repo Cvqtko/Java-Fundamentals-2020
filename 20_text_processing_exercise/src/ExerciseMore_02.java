@@ -3,14 +3,20 @@ import java.util.Scanner;
 public class ExerciseMore_02 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int n = Integer.parseInt(scanner.nextLine());
+		char first = scanner.nextLine().charAt(0);
+		char second = scanner.nextLine().charAt(0);
+		String text = scanner.nextLine();
 
-		for (int i = 0; i < n; i++) {
-			String line = scanner.nextLine();
+		int start = (int) Math.min(first, second);
+		int end = (int) Math.max(first, second);
 
-			String name = line.substring(line.indexOf('@') + 1, line.indexOf("|"));
-			String age = line.substring(line.indexOf('#') + 1, line.indexOf("*"));
-			System.out.println(String.format("%s is %s years old.", name, age));
+		int sum = 0;
+		for (int i = 0; i < text.length(); i++) {
+			int currentChar = text.charAt(i);
+			if (currentChar > start && currentChar < end) {
+				sum += currentChar;
+			}
 		}
+		System.out.println(sum);
 	}
 }
