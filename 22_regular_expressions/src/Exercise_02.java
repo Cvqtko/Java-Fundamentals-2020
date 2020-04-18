@@ -5,10 +5,18 @@ import java.util.regex.Pattern;
 public class Exercise_02 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		String regex = "\\b[A-Z][a-z]+ [A-Z][a-z]+\\b";
+		String regex = "\\+359([- ])2\\1[\\d]{3}\\1[\\d]{4}\\b";
 		String input = scanner.nextLine();
 
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
+
+		while (matcher.find()) {
+			if (matcher.hitEnd()) {
+				System.out.print(matcher.group());
+			} else {
+				System.out.print(matcher.group() + ", ");
+			}
+		}
 	}
 }
