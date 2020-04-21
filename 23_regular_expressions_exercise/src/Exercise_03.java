@@ -1,3 +1,5 @@
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -5,14 +7,48 @@ import java.util.regex.Pattern;
 public class Exercise_03 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		String regex = "\\b[A-Z][a-z]+ [A-Z][a-z]+\\b";
+
+		Map<String, Map<String, Double>> customers = new LinkedHashMap<>();
+
 		String input = scanner.nextLine();
 
-		Pattern pattern = Pattern.compile(regex);
-		Matcher matcher = pattern.matcher(input);
+		Pattern pattern = Pattern.compile(
+				"\\%(?<customer>[A-Z][a-z]+)\\%[^|$%.]*\\<(?<product>\\w+)\\>[^|$%.]*\\|(?<count>\\d+)\\|[^|$%.]*?(?<price>\\d+([.]\\d+)?)\\$");
 
-		while (matcher.find()) {
-			System.out.println(matcher.group() + " ");
+		double totalIncome = 0.0;
+		while (!"end of shift".equals(input)) {
+
+			Matcher matcher = pattern.matcher(input);
+
+			if (matcher.find()) {
+				String customer = matcher.group("customer");
+				String product = matcher.group("product");
+				int count = Integer.parseInt(matcher.group("count"));
+				double price = Double.parseDouble(matcher.group("price"));
+				double totalPrice = count * price;
+
+				if (!customers.containsKey(customer)) {
+					LinkedHashMap<String, Double> products = new LinkedHashMap<String, Double>();
+					products.put(product, totalPrice);
+					customers.put(customer, products);
+				} else {
+					if (customers.get(customer).containsKey(product)) {
+						double oldValue = customers.get(customer).get(product);
+						customers.get(customer).put(product, oldValue + totalPrice);
+					} else {
+						customers.get(customer).put(product, totalPrice);
+					}
+				}
+
+				totalIncome += totalPrice;
+			}
+			input = scanner.nextLine();
 		}
+
+		customers.entrySet().stream().forEach(c -> {
+			c.getValue().entrySet().stream().forEach(
+					p -> System.out.println(String.format("%s: %s - %.2f", c.getKey(), p.getKey(), p.getValue())));
+		});
+		System.out.printf("Total income: %.2f", totalIncome);
 	}
 }
