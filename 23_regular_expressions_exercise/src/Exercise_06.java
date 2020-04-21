@@ -5,14 +5,14 @@ import java.util.regex.Pattern;
 public class Exercise_06 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		String regex = "\\b[A-Z][a-z]+ [A-Z][a-z]+\\b";
+		String regex = "[A-Za-z0-9](\\.|-|_|[A-Za-z0-9])+[A-Za-z0-9]@[A-Za-z]+(\\.|-)?[A-Za-z]+\\.?\\w+";
 		String input = scanner.nextLine();
 
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(input);
 
 		while (matcher.find()) {
-			System.out.println(matcher.group() + " ");
+			System.out.println(matcher.group());
 		}
 	}
 }
