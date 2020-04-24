@@ -1,5 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Console;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -7,27 +9,56 @@ import java.util.regex.Pattern;
 public class ExerciseMore_03 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		List<String> furniture = new ArrayList<>();
-		double totalPrice = 0.0;
-		String regex = ">>(?<name>\\w+)<<(?<price>[0-9]+\\.?[0-9]*)!(?<quantity>[0-9]+)";
-
+		String[] tokens = scanner.nextLine().split("\\|");
+		String regex = "(#[A-Z]+#)|(\\$[A-Z]+\\$)|(%[A-Z]+%)|(\\*[A-Z]+\\*)|(&[A-Z]+&)";
 		Pattern pattern = Pattern.compile(regex);
-		String input = scanner.nextLine();
-		while (!"Purchase".equals(input)) {
 
-			Matcher matcher = pattern.matcher(input);
-
-			while (matcher.find()) {
-				String name = matcher.group("name");
-				double price = Double.parseDouble(matcher.group("price"));
-				int quantity = Integer.parseInt(matcher.group("quantity"));
-				furniture.add(name);
-				totalPrice += price * quantity;
-			}
-			input = scanner.nextLine();
+		String firstPart = tokens[0];
+		String firstWord = "";
+		Matcher matcher = pattern.matcher(firstPart);
+		if (matcher.find()) {
+			firstWord = matcher.group().toString().substring(1, matcher.group().length() - 1);
 		}
-		System.out.println("Bought furniture:");
-		furniture.stream().forEach(f -> System.out.println(f));
-		System.out.printf("Total money spend: %.2f", totalPrice);
+
+		String secondPart = tokens[1];
+		LinkedList<String> secondPartList = new LinkedList<>();
+		regex = "\\d{2}:\\d{2}";
+		pattern = Pattern.compile(regex);
+		matcher = pattern.matcher(secondPart);
+
+		while (matcher.find()) {
+			secondPartList.add(matcher.group());
+		}
+
+		Map<String, Integer> result = new HashMap<>();
+		for (String partTwo : secondPartList) {
+			int numberLength = 0;
+			String[] numberSplit = partTwo.split(":");
+
+			int asciiCode = Integer.parseInt(numberSplit[0]);
+			char letter = (char) asciiCode;
+			String wordLength = numberSplit[1];
+			if (wordLength.charAt(0) == '0') {
+				numberLength = Integer.parseInt(wordLength.charAt(1) + "");
+			} else {
+				if (wordLength.length() >= 1 && wordLength.length() <= 20) {
+					numberLength = Integer.parseInt(wordLength);
+				}
+			}
+
+			if (firstWord.contains(letter + "")) {
+				result.put(letter + "", numberLength);
+			}
+
+		}
+		String[] thirdPart = tokens[2].split("\\s+");
+		for (String word : thirdPart) {
+			char firstLetter = word.charAt(0);
+			for (Map.Entry<String, Integer> item : result.entrySet()) {
+				if (word.length() == item.getValue() + 1 && firstLetter == item.getKey().charAt(0)) {
+					System.out.println(word);
+				}
+			}
+		}
 	}
 }
