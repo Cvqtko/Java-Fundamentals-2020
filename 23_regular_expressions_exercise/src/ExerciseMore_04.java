@@ -7,27 +7,23 @@ import java.util.regex.Pattern;
 public class ExerciseMore_04 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		List<String> furniture = new ArrayList<>();
-		double totalPrice = 0.0;
-		String regex = ">>(?<name>\\w+)<<(?<price>[0-9]+\\.?[0-9]*)!(?<quantity>[0-9]+)";
+		Pattern pattern = Pattern.compile("@([A-Za-z]+)[^@\\-!:>]*!([G])!");
 
-		Pattern pattern = Pattern.compile(regex);
-		String input = scanner.nextLine();
-		while (!"Purchase".equals(input)) {
+		int key = Integer.parseInt(scanner.nextLine());
 
-			Matcher matcher = pattern.matcher(input);
+		String input;
+		while (!"end".equals(input = scanner.nextLine())) {
+			StringBuilder decrypted = new StringBuilder();
 
-			while (matcher.find()) {
-				String name = matcher.group("name");
-				double price = Double.parseDouble(matcher.group("price"));
-				int quantity = Integer.parseInt(matcher.group("quantity"));
-				furniture.add(name);
-				totalPrice += price * quantity;
+			for (int i = 0; i < input.length(); i++) {
+				char symbol = (char) (input.charAt(i) - key);
+				decrypted.append(symbol);
 			}
-			input = scanner.nextLine();
+			Matcher matcher = pattern.matcher(decrypted.toString());
+			if (matcher.find()) {
+				String name = matcher.group(1);
+				System.out.println(name);
+			}
 		}
-		System.out.println("Bought furniture:");
-		furniture.stream().forEach(f -> System.out.println(f));
-		System.out.printf("Total money spend: %.2f", totalPrice);
 	}
 }
