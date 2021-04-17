@@ -5,7 +5,7 @@ public class ExerciseMore_01 {
 		Scanner scanner = new Scanner(System.in);
 		String input = scanner.nextLine();
 
-		while (!"END".equals(input)) {
+		while (!input.equals("END")) {
 
 			boolean isInt = true;
 
