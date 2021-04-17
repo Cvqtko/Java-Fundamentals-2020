@@ -7,12 +7,10 @@ public class Exercise_01 {
 
 		int day = Integer.parseInt(sc.nextLine());
 
-		if (day >= 1 && day <= 7)
-
+		if (day >= 1 && day <= 7) {
 			System.out.println(days[day - 1]);
-
-		else
-
+		} else {
 			System.out.println("Invalid day!");
+		}
 	}
 }
