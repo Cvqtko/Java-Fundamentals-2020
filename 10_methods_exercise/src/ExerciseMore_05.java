@@ -7,17 +7,17 @@ public class ExerciseMore_05 {
 		double num2 = Double.parseDouble(scanner.nextLine());
 		double num3 = Double.parseDouble(scanner.nextLine());
 
-		getSign(num1, num2, num3);
+		System.out.println(getSign(num1, num2, num3));
 	}
 
-	public static void getSign(double n1, double n2, double n3) {
+	public static String getSign(double n1, double n2, double n3) {
 		if (n1 == 0 || n2 == 0 || n3 == 0) {
-			System.out.println("zero");
+			return "zero";
 		} else if ((n1 > 0 && n2 > 0 && n3 > 0) || (n1 < 0 && n2 < 0 && n3 > 0) || (n1 < 0 && n2 > 0 && n3 < 0)
 				|| (n1 > 0 && n2 < 0 && n3 < 0)) {
-			System.out.println("positive");
+			return "positive";
 		} else {
-			System.out.println("negative");
+			return "negative";
 		}
 	}
 }
