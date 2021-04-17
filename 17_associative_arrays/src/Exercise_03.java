@@ -13,8 +13,11 @@ public class Exercise_03 {
 
 		for (String word : words) {
 			String wordLowerCase = word.toLowerCase();
-			counts.putIfAbsent(wordLowerCase, 0);
-			counts.put(wordLowerCase, counts.get(wordLowerCase) + 1);
+			if (!counts.containsKey(wordLowerCase)) {
+				counts.putIfAbsent(wordLowerCase, 1);
+			} else {
+				counts.put(wordLowerCase, counts.get(wordLowerCase) + 1);
+			}
 
 		}
 		ArrayList<String> odds = new ArrayList<String>();
