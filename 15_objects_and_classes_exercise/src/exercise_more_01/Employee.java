@@ -33,11 +33,6 @@ public class Employee {
 		return salary;
 	}
 
-	@Override
-	public String toString() {
-		return String.format("%s %.2f %s %d", this.name, this.salary, this.email, this.age);
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -56,6 +51,11 @@ public class Employee {
 
 	public String getName() {
 		return name;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s %.2f %s %d", this.name, this.salary, this.email, this.age);
 	}
 
 }
